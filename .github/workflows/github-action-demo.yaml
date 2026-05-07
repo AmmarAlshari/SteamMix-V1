@@ -62,8 +62,8 @@ jobs:
       - name: Update Manifests
         run: |
           # These lines search for ":latest" and replace it with the specific commit ID
-          sed -i "s|streammix-frontend:latest|streammix-frontend:${{ github.sha }}|g" k8s/frontend-deployment.yaml
-          sed -i "s|streammix-backend:latest|streammix-backend:${{ github.sha }}|g" k8s/backend-deployment.yaml
+          sed -i "s|streammix-frontend:[^ ]*|streammix-frontend:${{ github.sha }}|g" k8s/frontend-deployment.yaml
+          sed -i "s|streammix-backend:[^ ]*|streammix-backend:${{ github.sha }}|g" k8s/backend-deployment.yaml
 
       - name: Commit and Push to Git
         run: |
