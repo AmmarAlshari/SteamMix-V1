@@ -56,14 +56,21 @@ jobs:
     needs: [build-push-frontend, build-push-backend]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout app repo
         uses: actions/checkout@v4
+
+      - name: Checkout GitOps repo
+        uses: actions/checkout@v4
+        with:
+          repository: AmmarAsh99/streammix-gitops
+          path: external-repo-folder
 
       - name: Update Manifests
         run: |
           # These lines search for ":latest" and replace it with the specific commit ID
           sed -i "s|streammix-frontend:[^ ]*|streammix-frontend:${{ github.sha }}|g" k8s/frontend-deployment.yaml
-          sed -i "s|streammix-backend:[^ ]*|streammix-backend:${{ github.sha }}|g" k8s/backend-deployment.yaml
+          sed -i "s|streammix-backend:[^ ]*|streammix-backend:${{ github.sha }}|g" external-repo-folder/backend/backend-deployment.yaml
+          sed -i "s|streammix-backend:[^ ]*|streammix-backend:${{ github.sha }}|g" external-repo-folder/frontend/backend-deployment.yaml
 
       - name: Commit and Push to Git
         run: |

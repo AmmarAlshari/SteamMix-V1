@@ -18,6 +18,14 @@ spec:
         - name: nest-container
           image: ammaralshari/streammix-backend
           imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+
           ports:
             - containerPort: 3000
           envFrom:
