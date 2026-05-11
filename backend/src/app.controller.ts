@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class HelloController {
   @Get()
   getMeessage(): string {
-    return 'hello from Ammar after testing ahahahahahahahahahha';
+    return 'this endpoint for testing only ';
   }
 }
