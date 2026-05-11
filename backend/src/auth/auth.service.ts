@@ -10,9 +10,6 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  //authentication : making sure that user email and password correct
-  //authorization : “What are you allowed to do?”
-
   // verify the user credentials
   async signIn(email: string, pass: string) {
     const user = await this.userService.findUserByEmail(email);
