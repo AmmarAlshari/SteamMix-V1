@@ -1,23 +1,77 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-100">
-  <div class="bg-white p-6 rounded-2xl shadow-lg w-full max-w-xl text-center">
-    <h1 class="text-2xl font-bold mb-4">Video Stream</h1>
+<div class="min-h-screen bg-sky-50 flex flex-col items-center justify-center px-4 py-12">
+  <!-- Logo -->
+  <div class="flex items-center gap-3 mb-8">
+    <div class="w-10 h-10 bg-sky-500 rounded-xl flex items-center justify-center">
+      <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"
+        />
+      </svg>
+    </div>
+    <span class="text-xl font-medium text-sky-900">StreamMix</span>
+  </div>
 
-    <input
-      type="text"
-      placeholder="Paste video URL here"
-      class="w-full p-3 border rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      [(ngModel)]="videoUrl"
-    />
+  <!-- Main card -->
+  <div class="bg-white w-full max-w-xl rounded-2xl shadow-sm border border-gray-100 p-8">
+    <h1 class="text-2xl font-medium text-gray-900 mb-1">Watch anything</h1>
+    <p class="text-sm text-gray-500 mb-6">Paste a video URL below to start streaming</p>
 
+    <!-- URL input -->
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-600 mb-1.5"> Video URL </label>
+      <div class="relative">
+        <span class="absolute inset-y-0 left-3 flex items-center text-gray-400">
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
+            />
+          </svg>
+        </span>
+        <input
+          type="text"
+          placeholder="https://example.com/video.mp4"
+          [(ngModel)]="videoUrl"
+          class="w-full h-11 pl-10 pr-4 text-sm border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-transparent transition"
+        />
+      </div>
+    </div>
+
+    <!-- Load button -->
     <button
-      class="w-full bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 transition"
       (click)="loadVideo()"
+      class="w-full h-11 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium rounded-lg transition flex items-center justify-center gap-2 mb-6"
     >
-      ammar made this change for testing
+      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"
+        />
+      </svg>
+      Stream Video
     </button>
 
-    <div class="mt-6">
-      <video controls class="w-full rounded-lg" [src]="videoSrc()"></video>
+    <!-- Divider -->
+    <div class="flex items-center gap-3 mb-6">
+      <div class="flex-1 h-px bg-gray-100"></div>
+      <span class="text-xs text-gray-400">preview</span>
+      <div class="flex-1 h-px bg-gray-100"></div>
     </div>
+
+    <!-- Video player -->
+    <div
+      class="rounded-xl overflow-hidden bg-gray-950 aspect-video flex items-center justify-center"
+    >
+      <video controls class="w-full h-full" [src]="videoSrc()"></video>
+    </div>
+
+    <!-- Footer -->
+    <p class="text-center text-xs text-gray-400 mt-4">Supports MP4, WebM, and HLS streams</p>
   </div>
 </div>
